@@ -12,6 +12,14 @@ export const booksQueries: GraphQLResolverMap = {
   },
 };
 
+export const bookExternalResolvers: GraphQLResolverMap = {
+  Book: {
+    async __resolveReference(ref) {
+      return await getBookById(ref.id);
+    },
+  },
+};
+
 export const booksMutations: GraphQLResolverMap = {
   Mutation: {
     createBook: async (_, { bookToAdd }) => {

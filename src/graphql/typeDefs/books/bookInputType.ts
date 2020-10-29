@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql, ITypedef } from 'apollo-server-express';
 import { DocumentNode } from 'graphql';
 
 export const bookInputType: DocumentNode = gql`
