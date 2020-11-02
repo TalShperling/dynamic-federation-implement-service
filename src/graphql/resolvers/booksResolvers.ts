@@ -1,7 +1,15 @@
-import { addBook, deleteBookById, getAllBooks, getBookById } from '../../utils/bookDataSource';
+import { addBook, deleteBookById, getAllBooks, getBookById, updateBook } from '../../utils/bookDataSource';
 import { IBook } from '../models/books/Book';
 import { IBookMutationResponse } from '../models/books/BookMutationResponse';
 import { GraphQLResolverMap } from 'apollo-graphql';
+
+export const bookExternalResolvers: GraphQLResolverMap = {
+  Book: {
+    async __resolveReference(ref) {
+      return await getBookById(ref.id);
+    },
+  },
+};
 
 export const booksQueries: GraphQLResolverMap = {
   Query: {
@@ -9,14 +17,6 @@ export const booksQueries: GraphQLResolverMap = {
       return await getAllBooks();
     },
     book: async (_, { bookId }) => await getBookById(bookId),
-  },
-};
-
-export const bookExternalResolvers: GraphQLResolverMap = {
-  Book: {
-    async __resolveReference(ref) {
-      return await getBookById(ref.id);
-    },
   },
 };
 
@@ -46,7 +46,7 @@ export const booksMutations: GraphQLResolverMap = {
       const bookInList: IBook | void = await getBookById(bookToUpdate.id);
 
       if (bookInList) {
-        Object.assign(bookInList, bookToUpdate);
+        await updateBook(bookToUpdate);
 
         return {
           success: true,
