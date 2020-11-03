@@ -2,11 +2,12 @@ import { addBook, deleteBookById, getAllBooks, getBookById, updateBook } from '.
 import { IBook } from '../models/books/Book';
 import { IBookMutationResponse } from '../models/books/BookMutationResponse';
 import { GraphQLResolverMap } from 'apollo-graphql';
+import { Reference } from '../models/books/Reference';
 
 export const bookExternalResolvers: GraphQLResolverMap = {
   Book: {
-    async __resolveReference(ref) {
-      return await getBookById(ref.id);
+    __resolveReference: async (ref: Reference) => {
+      return await getBookById(parseInt(ref.id));
     },
   },
 };
