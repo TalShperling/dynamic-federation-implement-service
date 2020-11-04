@@ -2,12 +2,12 @@ import { IBook } from '../graphql/models/books/Book';
 
 let books: IBook[] = [
   {
-    id: 1,
+    id: "1",
     title: 'Harry Potter and the Chamber of Secrets',
     // author: 'J.K. Rowling',
   },
   {
-    id: 2,
+    id: "2",
     title: 'Jurassic Park',
     // author: 'Michael Crichton',
   },
@@ -17,7 +17,7 @@ const getAllBooks = async (): Promise<IBook[]> => {
   return books;
 };
 
-const getBookById = async (bookId: number): Promise<IBook | void> => {
+const getBookById = async (bookId: string): Promise<IBook | void> => {
   return books.find((book) => book.id === bookId);
 };
 
@@ -25,7 +25,7 @@ const addBook = async (newBook: IBook): Promise<void> => {
   books.push(newBook);
 };
 
-const deleteBookById = async (bookId: number): Promise<void> => {
+const deleteBookById = async (bookId: string): Promise<void> => {
   books = books.filter((book: IBook) => book.id !== bookId);
 };
 

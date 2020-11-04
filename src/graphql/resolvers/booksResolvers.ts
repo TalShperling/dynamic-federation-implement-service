@@ -7,7 +7,7 @@ import { Reference } from '../models/books/Reference';
 export const bookExternalResolvers: GraphQLResolverMap = {
   Book: {
     __resolveReference: async (ref: Reference) => {
-      return await getBookById(parseInt(ref.id));
+      return await getBookById(ref.id);
     },
   },
 };
