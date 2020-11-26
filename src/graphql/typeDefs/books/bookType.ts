@@ -5,5 +5,7 @@ export const bookType: DocumentNode = gql`
   type Book @key(fields: "id") {
     id: ID!
     title: String!
+    category: Category
+    episode: Episode
   }
 `;

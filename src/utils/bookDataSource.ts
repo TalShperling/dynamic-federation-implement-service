@@ -4,12 +4,22 @@ let books: IBook[] = [
   {
     id: 1,
     title: 'Harry Potter and the Chamber of Secrets',
-    // author: 'J.K. Rowling',
+    category: {
+      name: 'Hey1',
+    },
+    episode: {
+      pages: 30,
+    },
   },
   {
     id: 2,
     title: 'Jurassic Park',
-    // author: 'Michael Crichton',
+    category: {
+      name: 'Hey2',
+    },
+    episode: {
+      pages: 10,
+    },
   },
 ];
 
